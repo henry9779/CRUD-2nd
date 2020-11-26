@@ -1,0 +1,16 @@
+<h1>看板列表</h1>
+
+    <%= link_to '新增看板', new_board_path %>
+
+        <table>
+            <tr>
+                <td>看板名</td>
+            </tr>
+            <% @boards.each do |board| %>
+                <tr>
+                    <td>
+                        <%= board.title %>
+                    </td>
+                </tr>
+                <% end %>
+        </table>
