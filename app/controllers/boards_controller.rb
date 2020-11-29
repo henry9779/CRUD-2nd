@@ -1,12 +1,13 @@
 class BoardsController < ApplicationController
 
+  before_action :find_board, only: [:show, :edit, :update, :destroy]
+  # 在所有 action 先執行方法, 只要這些 [ :action ]
 
   def index
     @boards = Board.all
   end
 
   def show
-    @board = Board.find(params[:id])
   end
 
   def new
@@ -24,17 +25,19 @@ class BoardsController < ApplicationController
   end
 
   def edit
-    @board = Board.find(params[:id])
   end
 
   def update
-    @board = Board.find(params[:id])
-
     if @board.update(board_params)
-      redirect_to boards_path, notice: '更新看板成功'
+      redirect_to root_path, notice: '更新看板成功'
     else
       render :edit
     end
+  end
+
+  def destroy
+      @board.destroy
+      redirect_to root_path, notice: '看板已刪除'
   end
 
 
@@ -45,6 +48,10 @@ class BoardsController < ApplicationController
 
     def board_params
       params.require(:board).permit(:title)
+    end
+
+    def find_board
+      @board = Board.find(params[:id])
     end
 
 end

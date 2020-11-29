@@ -1,0 +1,26 @@
+<h1>新增會員</h1>
+
+<%= form_for(@user, url: '/users', method: 'post') do |f| %>
+
+  <div class="fields">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+
+    <div class="fields">
+    <%= f.label :password, '密碼' %>
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :password_confirmation, '密碼確認' %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :nickname, '暱稱' %>
+    <%= f.text_field :nickname %>
+  </div>
+
+  <%= f.submit '註冊' %>
+<% end %>
