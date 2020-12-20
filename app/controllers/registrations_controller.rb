@@ -1,4 +1,6 @@
 class RegistrationsController < ApplicationController
+  before_action :session_required, only: [:edit, :update]
+  #寫在上層，因為很多會用到
 
   def new
     @user = User.new
