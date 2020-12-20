@@ -5,9 +5,10 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if User.login(params[:user])
+    user = User.login(params[:user])
+    if user
       # 會將使用者登入資料帶進類別方法裡，把密碼加密後登入
-      session[:login] = params[:user][:email]
+      session[:login] = user.id
       # 發 cookie 給使用者
       redirect_to root_path, notice: '登入成功'
     else

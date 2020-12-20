@@ -13,7 +13,16 @@ class RegistrationsController < ApplicationController
       end
   end
 
-
+  def edit
+  end
+  
+  def update
+    if current_user.update(user_params)
+      redirect_to edit_users_path, notice: '資料更新成功'
+    else
+      #
+    end
+  end
 
 
 
@@ -21,6 +30,6 @@ class RegistrationsController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:email, :password, :nickname, :password_confirmation )
+    params.require(:user).permit(:email, :password, :nickname, :password_confirmation)
   end
 end

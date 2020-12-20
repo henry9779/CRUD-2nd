@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include SessionsHelper
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   #如果這個 controller 任何一個 action 出現這個錯誤就用 with 後面的方法解決
